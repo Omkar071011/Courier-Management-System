@@ -67,14 +67,11 @@ typedef struct courier cur;
 
 int main()
 {
-	//delceration part
 	int staffDetails();
 	int bookingDetails();
 	int courierDetails();
 	int otherDetails();
 	int choice;
-
-	//executable part
 	system("clear");
 
 	while(1)
@@ -115,7 +112,7 @@ int main()
 
 }
 
-int staffDetails()      //User Define Function for Staff Details.
+int staffDetails()      
 {
 	void s_details();
 	void s_view();
@@ -139,27 +136,27 @@ int staffDetails()      //User Define Function for Staff Details.
 
 		switch(choice)
 		{
-			case 0://Exit Staff Details
+			case 0:
 				return(EXIT_SUCCESS);
 			break;
 
-			case 1://Add Staff Details
+			case 1:
 				s_details();
 			break;
 
-			case 2://View Staff Details
+			case 2:
 				s_view();
 			break;
 
-			case 3://Remove Staff Details
+			case 3:
 				s_remove();
 			break;
 
-			case 4://Search Staff Details
+			case 4:
 				s_search();
 			break;
 
-			case 5://update staff Details
+			case 5:
 				s_update();
 			break;
 
@@ -172,7 +169,7 @@ int staffDetails()      //User Define Function for Staff Details.
 
 	printf("\n");
 }
-int bookingDetails()      //User Define Function for Staff Details.
+int bookingDetails()      
 {
 	void b_details();
 	void b_view();
@@ -192,19 +189,19 @@ int bookingDetails()      //User Define Function for Staff Details.
 
 		switch(choice)
 		{
-			case 0://Exit Staff Details
+			case 0:
 				return(EXIT_SUCCESS);
 			break;
 
-			case 1://Add Staff Details
+			case 1:
 				b_details();
 			break;
 
-			case 2://View Staff Details
+			case 2:
 				b_view();
 			break;
 
-			case 3://update staff Details
+			case 3:
 				b_update();
 			break;
 
@@ -218,7 +215,7 @@ int bookingDetails()      //User Define Function for Staff Details.
 	printf("\n");
 }
 
-void s_details()        //User Define Function to Add the Staff Details.
+void s_details()        
 {
 	FILE *s_file = NULL;
 	stf sptr;
@@ -261,8 +258,7 @@ void s_details()        //User Define Function to Add the Staff Details.
 	}
 }
 
-void s_view()          //User Define Function to View the Staff Details.
-{
+void s_view()          
 	FILE *s_file = NULL;
 	stf sptr;
 	int cn=0;
@@ -307,7 +303,7 @@ void s_view()          //User Define Function to View the Staff Details.
 	printf("\n");
 }
 
-void s_search()        //User Define Function to Search the Staff Details.
+void s_search()        
 {
 	int s_code,cn=0;
 	stf sptr;
@@ -356,7 +352,7 @@ void s_search()        //User Define Function to Search the Staff Details.
 
 	printf("\n");
 }
-void s_remove()                                  //Function to delete product details
+void s_remove()                                  
 {
 	FILE *s_file=NULL;
 	FILE *temp_file=NULL;
@@ -474,7 +470,7 @@ void s_update()
         }
 }
 
-void b_details()        //User Define Function to Add the Staff Details.
+void b_details()        
 {
 	FILE *b_file = NULL;
 	bk bptr;
@@ -529,8 +525,7 @@ void b_details()        //User Define Function to Add the Staff Details.
 		fclose(b_file);
 	}
 }
-void b_view()          //User Define Function to View the Staff Details.
-{
+void b_view()          
 	FILE *b_file = NULL;
 	bk bptr;
 	int cn=0;
@@ -674,9 +669,8 @@ void b_update()
 	}
 	printf("\n");
 }
-//Functions for Courier Details
 
-int courierDetails()					//Function courierDetails
+int courierDetails()					
 {
 	void c_details();
 	void c_view();
@@ -716,8 +710,7 @@ int courierDetails()					//Function courierDetails
 	printf("\n");
 }
 
-void c_details()					//Function for adding courier details
-{
+void c_details()					
 	void l_view();
 	void w_view();
 	void t_view();
@@ -765,7 +758,7 @@ void c_details()					//Function for adding courier details
 	printf("\n");
 }
 
-void c_view()					//Function for viewing courier details
+void c_view()					
 {
 	FILE *c_file = NULL;
 	FILE *w_file = NULL;
@@ -832,8 +825,6 @@ void c_view()					//Function for viewing courier details
 			}
 			fclose(t_file);
 
-			//Getting price for given location
-
 			l_file = fopen("location.dat", "rb");
 
 			fread(&lptr, sizeof(loc), 1, l_file);
@@ -848,7 +839,6 @@ void c_view()					//Function for viewing courier details
 			}
 			fclose(l_file);
 
-			//Printing Total Amount
 
 			printf("\n\nTotal Amount is: %d", l_price+ w_price+ t_price);
 
@@ -861,7 +851,7 @@ void c_view()					//Function for viewing courier details
 
 	printf("\n");
 }
-void c_update()				//function for updating staff details
+void c_update()				
 {
 
 	void l_view();
@@ -943,9 +933,8 @@ void c_update()				//function for updating staff details
 	printf("\n");
 }
 
-//Functions for Other Details
 
-int otherDetails()					//Function otherDetails
+int otherDetails()					
 {
 	int Location();
 	int Weight();
@@ -989,7 +978,7 @@ int otherDetails()					//Function otherDetails
 	printf("\n");
 }
 
-int Location()					//function cLocation
+int Location()					
 {
 	void l_details();
 	void l_update();
@@ -1028,7 +1017,7 @@ int Location()					//function cLocation
 	printf("\n");
 }
 
-void l_details()					//function for adding location details
+void l_details()					
 {
 	FILE *l_file = NULL;
 	loc lptr;
@@ -1056,7 +1045,7 @@ void l_details()					//function for adding location details
 	printf("\n");
 }
 
-void l_view()					//function for viewing location details
+void l_view()					
 {
 	FILE *l_file = NULL;
 	loc lptr;
@@ -1088,7 +1077,7 @@ void l_view()					//function for viewing location details
 	printf("\n");
 }
 
-int Weight()					//function Weight
+int Weight()					
 {
 	void w_details();
 	void w_view();
@@ -1126,7 +1115,7 @@ int Weight()					//function Weight
 	printf("\n");
 }
 
-void w_details()					//function for adding weight details
+void w_details()					
 {
 	FILE *w_file = NULL;
 	wtg wptr;
@@ -1154,8 +1143,7 @@ void w_details()					//function for adding weight details
 	printf("\n");
 }
 
-void w_view()					//function for viewing weight details
-{
+void w_view()					
 	FILE *w_file = NULL;
 	wtg wptr;
 
@@ -1186,7 +1174,7 @@ void w_view()					//function for viewing weight details
 	printf("\n");
 }
 
-int Type()					//function Weight
+int Type()					
 {
 	void t_details();
 	void t_view();
@@ -1224,7 +1212,7 @@ int Type()					//function Weight
 	printf("\n");
 }
 
-void t_details()					//function for adding courier type details
+void t_details()					
 {
 	FILE *t_file = NULL;
 	tp tptr;
@@ -1252,7 +1240,7 @@ void t_details()					//function for adding courier type details
 	printf("\n");
 }
 
-void t_view()					//function for viewing courier type details
+void t_view()					
 {
 	FILE *t_file = NULL;
 	tp tptr;
