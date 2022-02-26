@@ -8,7 +8,7 @@
 
 struct staff
 {
-	int s_code;
+	int s_code; 
 	char s_name[20];
 	char s_add[50];
 	char s_gender[7];
@@ -29,7 +29,7 @@ struct Booking
 	char re_city[15];
 	char re_id[30];
 	char c_date[10];
-};
+};	
 struct weight
 {
 	char wrange[15];
@@ -57,25 +57,28 @@ struct courier
 	char wrange[15];
 
 };
-
+			
 typedef struct Booking bk;
 typedef struct staff stf;
 typedef struct weight wtg;
 typedef struct location loc;
 typedef struct type tp;
-typedef struct courier cur;
+typedef struct courier cur; 
 
 int main()
 {
+	//delceration part
 	int staffDetails();
 	int bookingDetails();
 	int courierDetails();
-	int otherDetails();
+	int otherDetails();	
 	int choice;
+
+	//executable part
 	system("clear");
 
 	while(1)
-	{
+	{	
 
 		printf("\n*****Choice Menu*****\n");
 		printf("\n1. Staff Details");
@@ -96,25 +99,25 @@ int main()
 		        case 1:
 				staffDetails();
 			break;
-
+			
 			case 2:
 				bookingDetails();
 			break;
 			case 3:
-				courierDetails();
+				courierDetails();			
 			break;
 			case 4:
 				otherDetails();
 			break;
-		}
-
+		}	
+	
 	}
 
 }
 
-int staffDetails()      
+int staffDetails()      //User Define Function for Staff Details. 
 {
-	void s_details();
+	void s_details();	
 	void s_view();
 	void s_search();
 	void s_remove();
@@ -136,27 +139,27 @@ int staffDetails()
 
 		switch(choice)
 		{
-			case 0:
+			case 0://Exit Staff Details
 				return(EXIT_SUCCESS);
 			break;
 
-			case 1:
+			case 1://Add Staff Details
 				s_details();
 			break;
 
-			case 2:
+			case 2://View Staff Details
 				s_view();
 			break;
 
-			case 3:
+			case 3://Remove Staff Details
 				s_remove();
 			break;
-
-			case 4:
+		
+			case 4://Search Staff Details
 				s_search();
 			break;
-
-			case 5:
+			
+			case 5://update staff Details
 				s_update();
 			break;
 
@@ -164,14 +167,14 @@ int staffDetails()
 				printf("Invalid Choice!");
 			break;
 		}
-
+	
 	}
-
+	
 	printf("\n");
 }
-int bookingDetails()      
+int bookingDetails()      //User Define Function for Staff Details. 
 {
-	void b_details();
+	void b_details();	
 	void b_view();
 	void b_update();
 	int choice;
@@ -189,19 +192,19 @@ int bookingDetails()
 
 		switch(choice)
 		{
-			case 0:
+			case 0://Exit Staff Details
 				return(EXIT_SUCCESS);
 			break;
 
-			case 1:
+			case 1://Add Staff Details
 				b_details();
 			break;
 
-			case 2:
+			case 2://View Staff Details
 				b_view();
 			break;
 
-			case 3:
+			case 3://update staff Details
 				b_update();
 			break;
 
@@ -209,19 +212,19 @@ int bookingDetails()
 				printf("Invalid Choice!");
 			break;
 		}
-
+	
 	}
-
+	
 	printf("\n");
 }
 
-void s_details()        
+void s_details()        //User Define Function to Add the Staff Details. 
 {
 	FILE *s_file = NULL;
 	stf sptr;
 
 	s_file = fopen("staff.dat", "ab");
-
+		
 	if(s_file == NULL)
 	{
 		printf("\tSorry...Can't add staff details!");
@@ -230,23 +233,23 @@ void s_details()
 	else
 	{
 		printf("\n\t...Enter staff details...");
-
+		
 		printf("\n\n\tEmployee Code:        ");
 		scanf("%d", &sptr.s_code);
-
+	
 		printf("\n\tEmployee Name:        ");
-		scanf("\n");
+		scanf("\n");	
 		gets(sptr.s_name);
 
 		printf("\n\tEmployee Address:     ");
 		gets(sptr.s_add);
-
-		printf("\n\tEmployee Gender:      ");
+	
+		printf("\n\tEmployee Gender:      ");  
 		gets(sptr.s_gender);
 
 		printf("\n\tEmployee Designation: ");
 		gets(sptr.des);
-
+		
 		printf("\n\tEmployee Phone number:");
 		gets(sptr.s_pn);
 
@@ -258,13 +261,14 @@ void s_details()
 	}
 }
 
-void s_view()          
+void s_view()          //User Define Function to View the Staff Details. 
+{
 	FILE *s_file = NULL;
 	stf sptr;
 	int cn=0;
 
 	s_file = fopen("staff.dat", "rb");
-
+		
 	if(s_file == NULL)
 	{
 		printf("\tSorry...Can't view staff details!");
@@ -272,14 +276,14 @@ void s_view()
 
 	else
 	{
-
-		fread(&sptr, sizeof(stf), 1, s_file);
+		
+		fread(&sptr, sizeof(stf), 1, s_file);		
 
 		while(!feof(s_file))
 		{
 			printf("\n\t...Staff Details of each Enterd Employees...\n");
-
-
+		
+			
 			printf("\n\tEmployee Code:          %d", sptr.s_code);
 			printf("\n\tEmployee Name:          %s", sptr.s_name);
 			printf("\n\tEmployee Address:       %s", sptr.s_add);
@@ -287,9 +291,9 @@ void s_view()
 			printf("\n\tEmployee Designation:   %s", sptr.des);
 			printf("\n\tEmployee Phone number:  %s", sptr.s_pn);
 			printf("\n\tEmployee Date of birth: %s", sptr.s_dob);
-			printf("\n");
+			printf("\n");			
 			cn++;
-			fread(&sptr, sizeof(stf), 1, s_file);
+			fread(&sptr, sizeof(stf), 1, s_file);	
 		}
 		if(cn>0)
 			fclose(s_file);
@@ -298,12 +302,12 @@ void s_view()
 			printf("\tThere is no record of any employee\n");
 			fclose(s_file);
 		}
-	}
-
+	}			
+		
 	printf("\n");
 }
 
-void s_search()        
+void s_search()        //User Define Function to Search the Staff Details. 
 {
 	int s_code,cn=0;
 	stf sptr;
@@ -313,13 +317,13 @@ void s_search()
 	scanf("%d", &s_code);
 
 	s_file = fopen("staff.dat", "rb");
-
+		
 	if(s_file == NULL)
 	{
 		printf("\tSorry...Can't search staff details!");
 	}
 
-	else
+	else 
 	{
 		while(!feof(s_file))
 		{
@@ -328,7 +332,7 @@ void s_search()
 			if(sptr.s_code == s_code)
 			{
 				printf("\n\t...Staff Details of Searched Employee...\n");
-
+				
 				printf("\n\tEmployee Code:          %d", sptr.s_code);
 				printf("\n\tEmployee Name:          %s", sptr.s_name);
 				printf("\n\tEmployee Address:       %s", sptr.s_add);
@@ -336,14 +340,14 @@ void s_search()
 				printf("\n\tEmployee Designation:   %s", sptr.des);
 				printf("\n\tEmployee Phone number:  %s", sptr.s_pn);
 				printf("\n\tEmployee Date of birth: %s", sptr.s_dob);
-
+				
 				cn++;
 				break;
-			}
+			}		
 		}
 		if(cn==1)
-				fclose(s_file);
-		else
+				fclose(s_file);	
+		else 
 		{
 				printf("\n\tNone of the number matches this employee...");
 				fclose(s_file);
@@ -351,8 +355,8 @@ void s_search()
 	}
 
 	printf("\n");
-}
-void s_remove()                                  
+}	
+void s_remove()                                  //Function to delete product details
 {
 	FILE *s_file=NULL;
 	FILE *temp_file=NULL;
@@ -361,11 +365,11 @@ void s_remove()
 
 	printf("\nEnter employee no: ");
     	scanf("%d", &s_code);
-
+	
 	s_file = fopen("staff.dat", "rb");
-
+	
 	temp_file=fopen("temp.dat", "wb");
-
+		
 	if(s_file == NULL)
 	{
 		printf("\tSorry...Can't search staff details!");
@@ -376,7 +380,7 @@ void s_remove()
 	    	fread(&sptr, sizeof(stf), 1, s_file);
 	while(!feof(s_file))
 	{
-
+    	
 		if (sptr.s_code == s_code)
 			printf("\tA record with requested name found and deleted.\n\n");
 		else
@@ -422,20 +426,20 @@ void s_update()
 				printf("\nEnter staff details ");
 				printf("\n\n\tEmployee Code:        ");
 				scanf("%d", &sptr.s_code);
-
+	
 				printf("\n\tEmployee Name:        ");
-				scanf("\n");
+				scanf("\n");	
 				gets(sptr.s_name);
 
 				printf("\n\tEmployee Address:     ");
 				gets(sptr.s_add);
-
-				printf("\n\tEmployee Gender:      ");
+	
+				printf("\n\tEmployee Gender:      ");  
 				gets(sptr.s_gender);
 
 				printf("\n\tEmployee Designation: ");
 				gets(sptr.des);
-
+		
 				printf("\n\tEmployee Phone number:");
 				gets(sptr.s_pn);
 
@@ -443,7 +447,7 @@ void s_update()
 				gets(sptr.s_dob);
 
 				cn++;
-
+				
 				fwrite(&sptr, sizeof(stf), 1, temp_file);
 			}
 
@@ -452,31 +456,31 @@ void s_update()
 				fwrite(&sptr, sizeof(stf), 1, temp_file);
 			}
 				fread(&sptr, sizeof(stf), 1, s_file);
-
+		
 	       }
 			if(cn>=1)
-			{
+			{			
 			fclose(temp_file);
 			fclose(s_file);
 			}
 			else
 			{
-				printf("Sorry..... NO record found");
+				printf("Sorry..... NO record found");			
 				fclose(temp_file);
 				fclose(s_file);
 			}
 			remove("staff.dat");
 			rename("temp.dat","staff.dat");
-        }
-}
+        }	
+}	
 
-void b_details()        
+void b_details()        //User Define Function to Add the Staff Details. 
 {
 	FILE *b_file = NULL;
 	bk bptr;
 
 	b_file = fopen("booking.dat", "ab");
-
+		
 	if(b_file == NULL)
 	{
 		printf("\tSorry...Can't add booking details!");
@@ -485,9 +489,9 @@ void b_details()
 	else
 	{
 		printf("\n\t...Enter booking details...");
-
+		
 		printf("\n\tSender Name:        ");
-		scanf("\n");
+		scanf("\n");	
 		gets(bptr.se_name);
 
 		printf("\n\tSender Address:     ");
@@ -495,15 +499,15 @@ void b_details()
 
 		printf("\n\tSender City:        ");
 		gets(bptr.se_city);
-
+	
 		printf("\n\tSender Phone number:");
 		gets(bptr.se_pn);
 
 		printf("\n\tSender mailid:");
 		gets(bptr.se_id);
-
+		
 		printf("\n\tReceiver Name:        ");
-		scanf("\n");
+		scanf("\n");	
 		gets(bptr.re_name);
 
 		printf("\n\tReceiver  Address:     ");
@@ -511,13 +515,13 @@ void b_details()
 
 		printf("\n\tReceiver  City:        ");
 		gets(bptr.re_city);
-
+	
 		printf("\n\tReceiver  Phone number:");
 		gets(bptr.re_pn);
 
 		printf("\n\tReceiver  mailid:");
 		gets(bptr.se_id);
-
+		
 		printf("\n\tDate of departure: ");
 		gets(bptr.c_date);
 
@@ -525,13 +529,14 @@ void b_details()
 		fclose(b_file);
 	}
 }
-void b_view()          
+void b_view()          //User Define Function to View the Staff Details. 
+{
 	FILE *b_file = NULL;
 	bk bptr;
 	int cn=0;
 
 	b_file = fopen("booking.dat", "rb");
-
+		
 	if(b_file == NULL)
 	{
 		printf("\tSorry...Can't view booking details!");
@@ -539,15 +544,15 @@ void b_view()
 
 	else
 	{
-
-		fread(&bptr, sizeof(bk), 1, b_file);
+		
+		fread(&bptr, sizeof(bk), 1, b_file);		
 
 		while(!feof(b_file))
 		{
 			printf("\n\t...Booking Details...\n");
-
-
-
+		
+			
+		
 			printf("\n\tSender Name:          	%s", bptr.se_name);
 			printf("\n\tSender Address:       	%s", bptr.se_add);
 			printf("\n\tSender City:       		%s", bptr.se_city);
@@ -557,11 +562,11 @@ void b_view()
 			printf("\n\tReceiver Address:       	%s", bptr.re_add);
 			printf("\n\tReceiver City:       	%s", bptr.re_city);
 			printf("\n\tReceiver Phone number:  	%s", bptr.re_pn);
-			printf("\n\tReceiver mailid:       	%s", bptr.se_id);
+			printf("\n\tReceiver mailid:       	%s", bptr.se_id);			
 			printf("\n\tDate of departure: 	%s", bptr.c_date);
-			printf("\n");
+			printf("\n");			
 			cn++;
-			fread(&bptr, sizeof(bk), 1, b_file);
+			fread(&bptr, sizeof(bk), 1, b_file);	
 		}
 		if(cn>0)
 			fclose(b_file);
@@ -570,8 +575,8 @@ void b_view()
 			printf("\tThere is no record\n");
 			fclose(b_file);
 		}
-	}
-
+	}			
+		
 	printf("\n");
 }
 void b_update()
@@ -584,12 +589,12 @@ void b_update()
 
 	b_file = fopen("booking.dat", "rb");
 	update_file = fopen("update.dat", "ab");
-
+	
 	printf("\n\tSender Name:        ");
-	scanf("\n");
+	scanf("\n");	
 	gets(y_name);
 
-
+	
 	if(b_file == NULL)
 	{
 		printf("\tSorry...Can't search booking details!");
@@ -604,9 +609,9 @@ void b_update()
 			if(strcmp(y_name,bptr.se_name)==0)
 			{
 				printf("\nEnter staff details ");
-
+				
 				printf("\n\tSender Name:        ");
-				scanf("\n");
+				scanf("\n");	
 				gets(bptr.se_name);
 
 				printf("\n\tSender Address:     ");
@@ -614,15 +619,15 @@ void b_update()
 
 				printf("\n\tSender City:        ");
 				gets(bptr.se_city);
-
+	
 				printf("\n\tSender Phone number:");
 				gets(bptr.se_pn);
 
 				printf("\n\tSender mailid:");
 				gets(bptr.se_id);
-
+		
 				printf("\n\tReceiver Name:        ");
-				scanf("\n");
+				scanf("\n");	
 				gets(bptr.re_name);
 
 				printf("\n\tReceiver  Address:     ");
@@ -630,7 +635,7 @@ void b_update()
 
 				printf("\n\tReceiver  City:        ");
 				gets(bptr.re_city);
-
+	
 				printf("\n\tReceiver  Phone number:");
 				gets(bptr.re_pn);
 
@@ -639,38 +644,39 @@ void b_update()
 
 				printf("\n\tDate of departure:");
 				gets(bptr.c_date);
-
+				
 				cn++;
 				fwrite(&bptr, sizeof(bk), 1, update_file);
-
+				
 			}
 			else
 			{
 				fwrite(&bptr, sizeof(bk), 1, update_file);
 			}
-
-			fread(&bptr, sizeof(bk), 1, b_file);
+		
+			fread(&bptr, sizeof(bk), 1, b_file);		
 		}
-
+		
 			if(cn>=1)
-			{
+			{			
 			fclose(update_file);
 			fclose(b_file);
 			}
 			else
 			{
-				printf("Sorry..... NO record found");
+				printf("Sorry..... NO record found");			
 				fclose(update_file);
 				fclose(b_file);
 			}
-
+		
 		remove("booking.dat");
 		rename("update.dat", "booking.dat");
 	}
 	printf("\n");
 }
+//Functions for Courier Details
 
-int courierDetails()					
+int courierDetails()					//Function courierDetails
 {
 	void c_details();
 	void c_view();
@@ -681,7 +687,7 @@ int courierDetails()
 	{
 		printf("\nChoice Menu: ");
 		printf("\n1. Add Details");
-		printf("\n2. View Details");
+		printf("\n2. View Details");	
 		printf("\n3. Update Details");
 		printf("\n0. Exit");
 
@@ -708,16 +714,17 @@ int courierDetails()
 	}
 
 	printf("\n");
-}
+}			
 
-void c_details()					
+void c_details()					//Function for adding courier details
+{
 	void l_view();
 	void w_view();
 	void t_view();
 
 	FILE *c_file = NULL;
-	cur cptr;
-
+	cur cptr; 
+	
 	c_file = fopen("courier.dat", "ab");
 
 	if(c_file == NULL)
@@ -728,7 +735,7 @@ void c_details()
 	else
 	{
 		printf("\nEnter Courier Details");
-
+	
 		printf("\nCourier ID: ");
 		scanf("%d", &cptr.c_id);
 
@@ -737,14 +744,14 @@ void c_details()
 		gets(cptr.c_name);
 
 		t_view();
-		printf("\nType: ");
+		printf("\nType: ");		
 		scanf("\n");
 		gets(cptr.type);
 
 		l_view();
 		printf("\nLocation: ");
-		scanf("\n");
-		gets(cptr.location);
+		scanf("\n");		
+		gets(cptr.location);	
 
 		w_view();
 		printf("\nWeight Range: ");
@@ -758,7 +765,7 @@ void c_details()
 	printf("\n");
 }
 
-void c_view()					
+void c_view()					//Function for viewing courier details
 {
 	FILE *c_file = NULL;
 	FILE *w_file = NULL;
@@ -792,11 +799,11 @@ void c_view()
 			printf("\nCourier Type: %s", cptr.type);
 			printf("\nCourier Weight Range: %s", cptr.wrange);
 			printf("\nLocation: %s", cptr.location);
-
+		
 			//Getting Price for given weight
 
 			w_file = fopen("weight.dat", "rb");
-
+			
 			fread(&wptr, sizeof(wtg), 1, w_file);
 			while(!feof(w_file))
 			{
@@ -812,7 +819,7 @@ void c_view()
 			//Getting Price for given type
 
 			t_file = fopen("type.dat", "rb");
-
+			
 			fread(&tptr, sizeof(tp), 1, t_file);
 			while(!feof(t_file))
 			{
@@ -820,13 +827,15 @@ void c_view()
 				{
 					t_price = tptr.t_price;
 				}
-
+				
 				fread(&tptr, sizeof(tp), 1, t_file);
 			}
 			fclose(t_file);
 
-			l_file = fopen("location.dat", "rb");
+			//Getting price for given location
 
+			l_file = fopen("location.dat", "rb");
+			
 			fread(&lptr, sizeof(loc), 1, l_file);
 			while(!feof(l_file))
 			{
@@ -834,12 +843,13 @@ void c_view()
 				{
 					l_price = lptr.l_price;
 				}
-
+					
 				fread(&lptr, sizeof(loc), 1, l_file);
 			}
 			fclose(l_file);
-
-
+		
+			//Printing Total Amount
+		
 			printf("\n\nTotal Amount is: %d", l_price+ w_price+ t_price);
 
 			fread(&cptr, sizeof(cur), 1, c_file);
@@ -848,10 +858,10 @@ void c_view()
 
 		fclose(c_file);
 	}
-
+		
 	printf("\n");
 }
-void c_update()				
+void c_update()				//function for updating staff details
 {
 
 	void l_view();
@@ -889,14 +899,14 @@ void c_update()
 				gets(cptr.c_name);
 
 				t_view();
-				printf("\nType: ");
+				printf("\nType: ");		
 				scanf("\n");
 				gets(cptr.type);
 
 				l_view();
 				printf("\nLocation: ");
-				scanf("\n");
-				gets(cptr.location);
+				scanf("\n");		
+				gets(cptr.location);	
 
 				w_view();
 				printf("\nWeight Range: ");
@@ -905,27 +915,27 @@ void c_update()
 				cn++;
 				fwrite(&cptr, sizeof(cur), 1, temp_file);
 			}
-
+		
 			else
 			{
 				fwrite(&cptr, sizeof(cur), 1, temp_file);
 			}
-
-			fread(&cptr, sizeof(cur), 1, c_file);
+		
+			fread(&cptr, sizeof(cur), 1, c_file);		
 		}
-
+		
 			if(cn>=1)
-			{
+			{			
 			fclose(temp_file);
 			fclose(c_file);
 			}
 			else
 			{
-				printf("Sorry..... NO record found");
+				printf("Sorry..... NO record found");			
 				fclose(temp_file);
 				fclose(c_file);
 			}
-
+		
 		remove("courier.dat");
 		rename("temp.dat", "courier.dat");
 	}
@@ -933,12 +943,13 @@ void c_update()
 	printf("\n");
 }
 
+//Functions for Other Details
 
-int otherDetails()					
+int otherDetails()					//Function otherDetails
 {
-	int Location();
+	int Location();	
 	int Weight();
-
+		
 	int choice;
 
 	while(1)
@@ -950,7 +961,7 @@ int otherDetails()
 		printf("\n0. Exit");
 
 		printf("\nEnter Your choice: ");
-		scanf("%d", &choice);
+		scanf("%d", &choice); 		
 
 		switch(choice)
 		{
@@ -962,7 +973,7 @@ int otherDetails()
 			break;
 
 			case 2:
-				Type();
+				Type();		
 			break;
 
 			case 3:
@@ -976,18 +987,18 @@ int otherDetails()
 	}
 
 	printf("\n");
-}
+}	
 
-int Location()					
+int Location()					//function cLocation
 {
 	void l_details();
 	void l_update();
 	void l_view();
 
 	int choice;
-
+	
 	while(1)
-	{
+	{	
 		printf("\nChoice Menu: ");
 		printf("\n1. Add Details");
 		printf("\n2. View Details");
@@ -1004,7 +1015,7 @@ int Location()
 			case 1:
 				l_details();
 			break;
-
+			
 			case 2:
 				l_view();
 			break;
@@ -1015,12 +1026,12 @@ int Location()
 	}
 
 	printf("\n");
-}
+}		
 
-void l_details()					
+void l_details()					//function for adding location details 
 {
 	FILE *l_file = NULL;
-	loc lptr;
+	loc lptr;	
 
 	l_file = fopen("location.dat", "ab");
 
@@ -1032,7 +1043,7 @@ void l_details()
 	else
 	{
 		printf("\nEnter location: ");
-		scanf("\n");
+		scanf("\n");		
 		gets(lptr.location);
 
 		printf("\nEnter price for above location: ");
@@ -1041,17 +1052,17 @@ void l_details()
 		fwrite(&lptr, sizeof(loc), 1, l_file);
 		fclose(l_file);
 	}
-
+	
 	printf("\n");
 }
 
-void l_view()					
+void l_view()					//function for viewing location details											
 {
 	FILE *l_file = NULL;
 	loc lptr;
 
 	l_file = fopen("location.dat", "rb");
-
+		
 	if(l_file == NULL)
 	{
 		printf("Can't view location details!");
@@ -1062,30 +1073,30 @@ void l_view()
 		fread(&lptr, sizeof(loc), 1, l_file);
 		while(!feof(l_file))
 		{
-
+						
 
 			printf("\nLoaction: %s", lptr.location);
 			printf("\nPrice: %d", lptr.l_price);
-			printf("\n");
-
-			fread(&lptr, sizeof(loc), 1, l_file);
+			printf("\n");			
+	
+			fread(&lptr, sizeof(loc), 1, l_file);	
 		}
-
+		
 		fclose(l_file);
-	}
-
+	}			
+		
 	printf("\n");
 }
 
-int Weight()					
+int Weight()					//function Weight
 {
 	void w_details();
 	void w_view();
 
 	int choice;
-
+	
 	while(1)
-	{
+	{	
 		printf("\nChoice Menu: ");
 		printf("\n1. Add Details");
 		printf("\n2. View Details");
@@ -1102,7 +1113,7 @@ int Weight()
 			case 1:
 				w_details();
 			break;
-
+		
 			case 2:
 				w_view();
 			break;
@@ -1113,12 +1124,12 @@ int Weight()
 	}
 
 	printf("\n");
-}
+}		
 
-void w_details()					
+void w_details()					//function for adding weight details 
 {
 	FILE *w_file = NULL;
-	wtg wptr;
+	wtg wptr;	
 
 	w_file = fopen("weight.dat", "ab");
 
@@ -1130,7 +1141,7 @@ void w_details()
 	else
 	{
 		printf("\nEnter weight range(gm/kg): ");
-		scanf("\n");
+		scanf("\n");		
 		gets(wptr.wrange);
 
 		printf("\nEnter price for above weight range: ");
@@ -1139,16 +1150,17 @@ void w_details()
 		fwrite(&wptr, sizeof(wtg), 1, w_file);
 		fclose(w_file);
 	}
-
+	
 	printf("\n");
 }
 
-void w_view()					
+void w_view()					//function for viewing weight details											
+{
 	FILE *w_file = NULL;
 	wtg wptr;
 
 	w_file = fopen("weight.dat", "rb");
-
+		
 	if(w_file == NULL)
 	{
 		printf("Can't view weight details!");
@@ -1156,33 +1168,33 @@ void w_view()
 
 	else
 	{
-		fread(&wptr, sizeof(wtg), 1, w_file);
+		fread(&wptr, sizeof(wtg), 1, w_file);			
 		while(!feof(w_file))
 		{
-
+			
 
 			printf("\nWeight Range: %s", wptr.wrange);
 			printf("\nPrice: %d", wptr.w_price);
-			printf("\n");
-
-			fread(&wptr, sizeof(wtg), 1, w_file);
+			printf("\n");			
+	
+			fread(&wptr, sizeof(wtg), 1, w_file);	
 		}
-
+		
 		fclose(w_file);
-	}
-
+	}			
+		
 	printf("\n");
 }
 
-int Type()					
+int Type()					//function Weight
 {
 	void t_details();
 	void t_view();
 
 	int choice;
-
+	
 	while(1)
-	{
+	{	
 		printf("\nChoice Menu: ");
 		printf("\n1. Add Details");
 		printf("\n2. View Details");
@@ -1199,7 +1211,7 @@ int Type()
 			case 1:
 				t_details();
 			break;
-
+		
 			case 2:
 				t_view();
 			break;
@@ -1210,12 +1222,12 @@ int Type()
 	}
 
 	printf("\n");
-}
+}		
 
-void t_details()					
+void t_details()					//function for adding courier type details 
 {
 	FILE *t_file = NULL;
-	tp tptr;
+	tp tptr;	
 
 	t_file = fopen("type.dat", "ab");
 
@@ -1227,7 +1239,7 @@ void t_details()
 	else
 	{
 		printf("\nEnter courier type: ");
-		scanf("\n");
+		scanf("\n");		
 		gets(tptr.ctype);
 
 		printf("\nEnter price for above type: ");
@@ -1236,17 +1248,17 @@ void t_details()
 		fwrite(&tptr, sizeof(tp), 1, t_file);
 		fclose(t_file);
 	}
-
+	
 	printf("\n");
 }
 
-void t_view()					
+void t_view()					//function for viewing courier type details											
 {
 	FILE *t_file = NULL;
 	tp tptr;
 
 	t_file = fopen("type.dat", "rb");
-
+		
 	if(t_file == NULL)
 	{
 		printf("Can't view courier type details!");
@@ -1254,20 +1266,21 @@ void t_view()
 
 	else
 	{
-		fread(&tptr, sizeof(tp), 1, t_file);
+		fread(&tptr, sizeof(tp), 1, t_file);			
 
 		while(!feof(t_file))
 		{
-
+			
 			printf("\nCourier type: %s", tptr.ctype);
 			printf("\nPrice: %d", tptr.t_price);
-			printf("\n");
-
-			fread(&tptr, sizeof(tp), 1, t_file);
+			printf("\n");			
+	
+			fread(&tptr, sizeof(tp), 1, t_file);	
 		}
-
+		
 		fclose(t_file);
-	}
-
+	}			
+		
 	printf("\n");
 }
+
